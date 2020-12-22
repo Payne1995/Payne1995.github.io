@@ -21,14 +21,13 @@
 <meta property="og:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/Snip20201213_4.png">
 <meta property="og:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/Snip20201213_5.png">
 <meta property="og:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/Snip20201213_6.png">
-<meta property="og:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/Snip20201213_7.png">
 <meta property="og:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/image-20201213182651495.png">
 <meta property="og:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/Snip20201213_8.png">
 <meta property="og:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/image-20201213183119299.png">
 <meta property="og:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/Snip20201213_9.png">
 <meta property="og:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/image-20201213184656453.png">
 <meta property="article:published_time" content="2020-12-16T02:08:36.000Z">
-<meta property="article:modified_time" content="2020-12-22T03:52:45.115Z">
+<meta property="article:modified_time" content="2020-12-22T03:57:35.976Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/image-20201213175114502.png">
@@ -169,10 +168,8 @@
 </li>
 </ul>
 <p>而开关损耗则不同，由于HS和LS之间的死区时间的存在，LS的FET的体二极管将先于FET开通，FET关断后，体二极管仍起到续流的作用，因而FET相当于零电压开通和零电压关断，开关损耗包括死区时间内体二极管的导通损耗和栅极驱动损耗。</p>
-<center>  <img src="/2020/12/16/Buck-Converter-Efficiency-Analysis/Snip20201213_7.png" alt style="zoom: 50%;" < center>
-
-
-<p>  截取至SQJ850的规格书上的MOSFET体二极管参数如图5所示：</p>
+<p>$$<br>P_{diode}=V_F\times I_O\times f_{sw}\times(T_{dead1}+T_{dead2})<br>P_{gate}=V_g\times Q_{g}\times f_sw<br>$$</p>
+<p>截取至SQJ850的规格书上的MOSFET体二极管参数如图5所示：</p>
 <p><img src="/2020/12/16/Buck-Converter-Efficiency-Analysis/image-20201213182651495.png"></p>
 <center>图5</center>
 
@@ -218,11 +215,11 @@
 
 
 
-</center>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/" data-id="ckizgdjds00008ofyc81q1cm9" data-title="Buck Converter Efficiency Analysis" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/" data-id="ckizgjn6l0000amfyg19s5t6s" data-title="Buck Converter Efficiency Analysis" class="article-share-link">Share</a>
       
       
       
