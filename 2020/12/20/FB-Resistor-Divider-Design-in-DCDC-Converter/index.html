@@ -14,17 +14,13 @@
 <meta property="og:description" content="作者：郑沛坤 &amp;emsp;电阻分压网络是开关电源中最常见的设置输出电压的方式，如图1所示。根据fb基准电压值和分压网络比例可以轻松的设置输出电压，公式如式1所示。但是fb电阻的阻值的确定却并不简单，其中涉及到开关电源效率，输出电压精确度，抗干扰性和环路稳定性等多个方面。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/1.png">
-<meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/11.png">
-<meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/22.png">
 <meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/1.2.png">
-<meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/33.png">
 <meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/2.png">
 <meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/2.1.png">
 <meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/5.png">
-<meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/44.png">
 <meta property="og:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/4.png">
 <meta property="article:published_time" content="2020-12-20T07:01:39.000Z">
-<meta property="article:modified_time" content="2020-12-20T09:42:49.933Z">
+<meta property="article:modified_time" content="2020-12-22T03:39:46.823Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/1.png">
@@ -114,37 +110,38 @@
 <p>&emsp;电阻分压网络是开关电源中最常见的设置输出电压的方式，如图1所示。根据fb基准电压值和分压网络比例可以轻松的设置输出电压，公式如式1所示。但是fb电阻的阻值的确定却并不简单，其中涉及到开关电源效率，输出电压精确度，抗干扰性和环路稳定性等多个方面。</p>
 <a id="more"></a>
 
-<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/1.png" alt="image-20201220152419299" style="zoom: 25%;">
+<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/1.png" alt="图1" style="zoom: 25%;">
+$$
+V_{OUT}=\frac {R_1+R_2}{R_2}V_{fb} \tag{1}
+$$
 
-<center>图1
-</center>
-<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/11.png" alt="image-20201220173759895" style="zoom:50%;">
+
 
 <ol>
 <li><p><strong>效率</strong></p>
 <p>选取不同阻值的分压网络，会影响开关电源的整体效率，选取的反馈电阻值越小，开关电源的效率越差。</p>
-<p>很自然的，在开关电源中，电阻分压网络中的反馈电阻也会损耗能量，功率损耗的大小由输出电压和反馈电阻的阻值决定，如式2所示。保持分压网络比例不变，输出电压为5V、12V、24V的开关电源选取不同反馈电阻值R1时的效率曲线如图2所示。</p>
-<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/22.png" alt="image-20201220173902546" style="zoom:50%;">
+<p>很自然的，在开关电源中，电阻分压网络中的反馈电阻也会损耗能量，功率损耗的大小由输出电压和反馈电阻的阻值决定，如式2所示。保持分压网络比例不变，输出电压为5V、12V、24V的开关电源选取不同反馈电阻值R1时的效率曲线如图2所示。<br>$$<br>P_{fb}=\frac{V_{OUT}^2}{R_1+R_2} \tag{2}<br>$$</p>
+</li>
+</ol>
+<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/1.2.png" alt="图2" style="zoom: 33%;">
 
-<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/1.2.png" alt="image-20201220172307243" style="zoom: 33%;">
-
-<center>图2
-</center></li>
+<ol start="2">
 <li><p><strong>输出电压精确度</strong></p>
 <p>选取不同阻值的分压网络，会影响输出电压的精确度，选取的反馈电阻阻值越大，开关电源的输出电压的精度越差。</p>
-<p>式1中的输出电压公式实际上并不精确，其忽略了fb引脚中漏电流对输出电压的影响，实际分压网络上的电流如图3所示，应用KCL方程可以得出考虑fb引脚漏电流的精确输出电压公式如式3所示。</p>
-<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/33.png" alt="image-20201220173935745" style="zoom:50%;">
+<p>式1中的输出电压公式实际上并不精确，其忽略了fb引脚中漏电流对输出电压的影响，实际分压网络上的电流如图3所示，应用KCL方程可以得出考虑fb引脚漏电流的精确输出电压公式如式3所示。<br>$$<br>V_{OUT}=\frac{R_1+R_2}{R_2}V_{fb}+I_{fb}R_1 \tag{3}<br>$$</p>
+</li>
+</ol>
+<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/2.png" alt style="zoom: 25%;">
 
-<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/2.png" alt="image-20201220160329965" style="zoom: 25%;">
-
-<p><img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/2.1.png" alt="image-20201220161153872"></p>
-<center>图3
+<p><img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/2.1.png"></p>
+<center>图3</center>
 
 <p>保持分压网络比例不变，输出电压为5V、12V、24V的开关电源选取不同反馈电阻值R1时的输出电压误差如图4所示。</p>
-<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/5.png" alt="image-20201220173327236" style="zoom: 33%;">
+<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/5.png" alt style="zoom: 33%;">
 
-<center> 图4
-</center></center></li>
+<center>图4</center>
+
+<ol start="3">
 <li><p><strong>抗干扰性</strong></p>
 <p>选取不同阻值的分压网络，会影响开关电源的抗干扰性，选取的反馈电阻阻值越大，开关电源的抗干扰性能力越差。</p>
 <p>首先电阻阻值越大，电阻热噪声也越大，其次电阻阻值越大，耦合外界相同的噪声，对fb电压节点和控制回路中引入的噪声也越大。</p>
@@ -152,15 +149,14 @@
 <li><p><strong>环路稳定性</strong></p>
 <p>选取不同阻值的分压网络，会影响开关电源的稳定性。</p>
 <p>首先分压网络的上分压电阻R1会影响开关电源控制环路的增益，电阻阻值越大，环路带宽越小。</p>
-<p>其次分压网络中常常引入前馈电容增加环路带宽，如图4所示，引入前馈电容将给环路引入新的极点和零点，如式4所示。</p>
-<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/44.png" alt="image-20201220174011031" style="zoom:50%;">
+<p>其次分压网络中常常引入前馈电容增加环路带宽，如图4所示，引入前馈电容将给环路引入新的极点和零点，如式4所示。<br>$$<br>f_z=\frac{1}{2\pi R_1C_f}\<br>f_p= \frac{1}{2\pi \frac{R_1R_2}{R_1+R_2}C_f}\tag{4}<br>$$</p>
+<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/4.png" alt style="zoom: 25%;">
 
-<img src="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/4.png" alt="image-20201220162531749" style="zoom: 25%;">
-
-<center> 图5
+<center>图5
+</center>
 
 <p>分压网络不同的阻值会影响前馈电容的选取，改变分压网络阻值后，如果不及时调整前馈电容值的话，可能导致环路的震荡和不稳定。假设原穿越频率位于引入的极点和零点的中间处，前馈电容将带来45度的相位裕度的提升，现在减小R1，前馈电容引入的零点和极点都将增大，给环路带来的相位裕度的提升将减小，系统将变得不稳定，如图6所示。</p>
-</center></li>
+</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>] Darwin Fernandez,<span class="string">&quot;Design considerations for a resistive feedback divider in a DC/DC converter,&quot;</span>Application Note</span><br><span class="line">[<span class="number">2</span>] Brian Butterfield, “Optimizing transient response of internally compensated dc-dc converters <span class="keyword">with</span> feedforward capacitor,” Application Report</span><br></pre></td></tr></table></figure>
 
@@ -172,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/" data-id="ckiwxzv500001gtsc8hvs01rl" data-title="FB Resistor Divider Design in DCDC Converter" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/" data-id="ckizfwuyk00033qfy4nrc5gp5" data-title="FB Resistor Divider Design in DCDC Converter" class="article-share-link">Share</a>
       
       
       
@@ -181,6 +177,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/12/22/latex/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          latex
+        
+      </div>
+    </a>
   
   
     <a href="/2020/12/16/Buck-Converter-Efficiency-Analysis/" id="article-nav-older" class="article-nav-link-wrap">
@@ -194,7 +199,27 @@
 </article>
 
 
-</section>
+
+
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+  </section>
         
           <aside id="sidebar">
   
@@ -202,7 +227,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Power/">Power</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Power/">Power</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RTOS/">RTOS</a></li></ul>
     </div>
   </div>
 
@@ -228,6 +253,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/12/22/latex/">latex</a>
+          </li>
         
           <li>
             <a href="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/">FB Resistor Divider Design in DCDC Converter</a>
