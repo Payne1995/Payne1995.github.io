@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Eliminate Startup with Load Issue in Buck Converter | Peikun Post</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="作者：郑沛坤 在很多应用中，负载始终连接在开关变换器上，因而开关电源需要支持带载启动的功能。在开关变换器启动过程中，在输出电压还未完全建立时，将负载需要从输入电容和电源处拉取的电流称为In-rush电流。In-rush电流过大可能会拉垮输入电源，引起开关变换器以下的启动问题：  开关变换器重启引起输出电压出现回勾现象； 开关变换器触发短路保护引起输出电压无法建立；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eliminate Startup with Load Issue in Buck Converter">
+<meta property="og:url" content="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/index.html">
+<meta property="og:site_name" content="Peikun Post">
+<meta property="og:description" content="作者：郑沛坤 在很多应用中，负载始终连接在开关变换器上，因而开关电源需要支持带载启动的功能。在开关变换器启动过程中，在输出电压还未完全建立时，将负载需要从输入电容和电源处拉取的电流称为In-rush电流。In-rush电流过大可能会拉垮输入电源，引起开关变换器以下的启动问题：  开关变换器重启引起输出电压出现回勾现象； 开关变换器触发短路保护引起输出电压无法建立；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/image-20210102160604525.png">
+<meta property="og:image" content="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/image-20210102161532392.png">
+<meta property="og:image" content="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/image-20210102161714582.png">
+<meta property="og:image" content="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/image-20210102163620488.png">
+<meta property="og:image" content="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/4.png">
+<meta property="article:published_time" content="2021-01-02T07:04:25.000Z">
+<meta property="article:modified_time" content="2021-01-02T08:52:35.022Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/image-20210102160604525.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Peikun Post" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Peikun Post</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Eliminate-Startup-with-Load-Issue-in-Buck-Converter" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/" class="article-date">
+  <time class="dt-published" datetime="2021-01-02T07:04:25.000Z" itemprop="datePublished">2021-01-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Power/">Power</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Eliminate Startup with Load Issue in Buck Converter
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>作者：郑沛坤</strong></p>
+<p>在很多应用中，负载始终连接在开关变换器上，因而开关电源需要支持带载启动的功能。在开关变换器启动过程中，在输出电压还未完全建立时，将负载需要从输入电容和电源处拉取的电流称为<em>In-rush</em>电流。<em>In-rush</em>电流过大可能会拉垮输入电源，引起开关变换器以下的启动问题：</p>
+<ul>
+<li>开关变换器重启引起输出电压出现回勾现象；</li>
+<li>开关变换器触发短路保护引起输出电压无法建立；</li>
+</ul>
+<a id="more"></a>
+
+<p><em>In-rush</em>电流由输出电容的充电电流<em>Ichg</em>和负载电流<em>Iout</em>组成。其中输出电容的充电电流<em>Ichg</em>由输出电容值和开关变换器的软启动时间决定，而负载电流<em>Iout</em>通常由负载特性决定，通常也和软启动时间相关。<br>$$<br>I_{in-rush}=I_{chg}+I_{out}\ \tag{1}<br>I_{chg}=C_{out}\frac {dV_{out}}{dt}<br>$$<br><img src="/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/image-20210102160604525.png" alt="图1 In-rush电流"></p>
+<p>在输出电压刚开始建立的阶段，最容易出现上述提到的启动故障，通常的解决方案为以下三种：</p>
+<ol>
+<li><p>采用EN pin设置开关变换器的启动电压。</p>
+<p>开关变换器通常存在一个IC设计时决定的启动电压，称为UVLO电压，另一个是EN pin的使能电压，可采用电阻分压的方式设置开关变换器的另一个启动电压。</p>
+<img src="/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/image-20210102161532392.png" alt="UVLO电压" style="zoom:60%;">
+
+<p><img src="/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/image-20210102161714582.png" alt="图2 EN电压"></p>
+<p>如果采用UVLO电压的启动方式1，由于<em>In-rush</em>电流过大，可能会将开关变换器的输入电压拉到UVLO值以下，导致开关变换器关机，关机后<em>In-rush</em>电流消失，输入电压恢复，开关变换器重新启动，如此反复，引起开关变换器的启动故障。</p>
+<p>如果引入EN使能的启动方式2，由于通过EN设计的开关变换器的启动电压，通常都远远高于UVLO电压，此时输入电容中储存有足够的能量，足以应付<em>In-rush</em>电流拉取的能量，可解决由此引起的启动故障。</p>
+</li>
+<li><p>延长开关变换器的<em>Soft Start</em>时间</p>
+<p>如图1所示，开关变换器的输出电压的建立所需的时间称为软启动(Soft Start)时间。可以看到<em>In-rush</em>电流的重要组成部分是输出电容的充电电流<em>Ichg</em>，输出电容的充电电流由输出电容容值和软启动时间决定，当出现因<em>In-rush</em>电流过高而触发开关变换器短路保护的故障时，可以采取以下措施。</p>
+<ul>
+<li>减小输出电容容值；</li>
+<li>延长软启动时间；</li>
+</ul>
+<p><img src="/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/image-20210102163620488.png" alt="图3 软启动"><br>$$<br>t_{ss}(ms)=\frac {C_{ss}(nF)\times V_{ref}(V)}{I_{ss}(uA)} \tag{2}<br>$$</p>
+</li>
+<li><p>增加合适的前馈电容</p>
+<p>然而有些开关变换器的集成度较高，无法从外部设置软启动电容值，另一方面输出电容容值为满足开关变换器的瞬态响应和文波需求而不能减小时，除选择<em>current limit</em>更大的开关变换器之外，可增加合适的前馈电容解决启动故障问题。</p>
+<img src="/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/4.png" alt="图3 增加前馈电容" style="zoom: 25%;">
+
+<p>增加前馈电容的实质是延长了开关变换器的软启动时间，如式3所示，在输出电压完全建立前，分压网络的分子值较小于添加前馈电容前的初始值，输出电压因而也较小于初始值。因而增加前馈前馈电容的实质就相当于延长了开关变换器的软启动时间，可解决因<em>In-rush</em>电流过高而触发开关变换器<em>current limit</em>的启动故障。<br>$$<br>V_{out}=V_{ref}(\frac {R_1//\frac {1}{jwC_f}}{R_2}+1)<br>$$</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/" data-id="ckjfgxu4o000143sc2h9i7uyi" data-title="Eliminate Startup with Load Issue in Buck Converter" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/02/Memory-Segment/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Memory Segment</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+  </section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Power/">Power</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RTOS/">RTOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/">Eliminate Startup with Load Issue in Buck Converter</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/02/Memory-Segment/">Memory Segment</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/">FB Resistor Divider Design in DCDC Converter</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/16/Buck-Converter-Efficiency-Analysis/">Buck Converter Efficiency Analysis</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/16/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
