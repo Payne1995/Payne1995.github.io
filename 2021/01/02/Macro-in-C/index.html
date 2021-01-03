@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Macro in C | Peikun Post</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="作者：郑沛坤 宏属于C语言中预处理命令的一种，宏的优点是：  方便对程序进行后期修改和裁剪； 提高程序的运行效率，宏可实现函数的功能，又能避免函数的入栈和出栈操作，减小系统开销； 宏由预处理器处理，可利用自己独特的语法实现C编译器无法实现的功能；  同时宏的缺点是：  宏语句晦涩难懂，影响程序的可读性； 由于宏语句是直接嵌入的，实现时所需的代码量会相对多一些； 对带参的宏而言，预处理器不会检查参数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Macro in C">
+<meta property="og:url" content="http://example.com/2021/01/02/Macro-in-C/index.html">
+<meta property="og:site_name" content="Peikun Post">
+<meta property="og:description" content="作者：郑沛坤 宏属于C语言中预处理命令的一种，宏的优点是：  方便对程序进行后期修改和裁剪； 提高程序的运行效率，宏可实现函数的功能，又能避免函数的入栈和出栈操作，减小系统开销； 宏由预处理器处理，可利用自己独特的语法实现C编译器无法实现的功能；  同时宏的缺点是：  宏语句晦涩难懂，影响程序的可读性； 由于宏语句是直接嵌入的，实现时所需的代码量会相对多一些； 对带参的宏而言，预处理器不会检查参数">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/02/Macro-in-C/obj_like_recur.png">
+<meta property="article:published_time" content="2021-01-02T14:07:41.000Z">
+<meta property="article:modified_time" content="2021-01-03T06:18:33.048Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/02/Macro-in-C/obj_like_recur.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Peikun Post" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Peikun Post</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Macro-in-C" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/02/Macro-in-C/" class="article-date">
+  <time class="dt-published" datetime="2021-01-02T14:07:41.000Z" itemprop="datePublished">2021-01-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RTOS/">RTOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Macro in C
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>作者：郑沛坤</strong></p>
+<p>宏属于C语言中预处理命令的一种，宏的优点是：</p>
+<ul>
+<li>方便对程序进行后期修改和裁剪；</li>
+<li>提高程序的运行效率，宏可实现函数的功能，又能避免函数的入栈和出栈操作，减小系统开销；</li>
+<li>宏由预处理器处理，可利用自己独特的语法实现C编译器无法实现的功能；</li>
+</ul>
+<p>同时宏的缺点是：</p>
+<ul>
+<li>宏语句晦涩难懂，影响程序的可读性；</li>
+<li>由于宏语句是直接嵌入的，实现时所需的代码量会相对多一些；</li>
+<li>对带参的宏而言，预处理器不会检查参数是否合法，影响程序的可靠性；</li>
+</ul>
+<a id="more"></a>
+
+<p>宏包含obj-like和func-like两类，其中后者可以实现类似函数的功能。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//obj-like</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> 宏名 替换列表 换行符</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pObj int *pObj</span></span><br><span class="line"><span class="comment">//func-like</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> 宏名([标识符列表])	替换列表 换行符</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pFunc(x,y) (x&gt;y?x:y)</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>宏的语法</li>
+</ol>
+<ul>
+<li><p>宏以空白符分割不同部分，空白符的多少对于宏来说是没有意义的；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;两种表达方式效果是一样的</span><br><span class="line">#define PINT int       pSign</span><br><span class="line">#define PINT       int pSign</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>宏定义以换行符结尾，意味着一个宏定义中无论多长，都只能有一个换行符，如果需要分行写，需要借助\；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#define MAIN	\</span><br><span class="line">int main()		\</span><br><span class="line">&#123;							\</span><br><span class="line">	return 0;		\</span><br><span class="line">&#125;							\</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串化操作符#，”#”可以将参数转换为字符串进行处理；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> WARN_IF(EXP) \</span></span><br><span class="line">    <span class="keyword">if</span> (EXP) \</span><br><span class="line">    &#123;\</span><br><span class="line">        <span class="built_in">fprintf</span> (<span class="built_in">stderr</span>, <span class="string">&quot;Warning: &quot;</span> #EXP <span class="string">&quot;\n&quot;</span>); \</span><br><span class="line">    &#125;\</span><br><span class="line"><span class="comment">//源码中</span></span><br><span class="line">WARN_IF (x == <span class="string">&quot;0&quot;</span>)</span><br><span class="line"><span class="comment">//预处理后</span></span><br><span class="line"><span class="keyword">if</span> (x == <span class="string">&quot;0&quot;</span>)&#123;<span class="built_in">fprintf</span> (__stderrp, <span class="string">&quot;Warning: &quot;</span> <span class="string">&quot;x == \&quot;0\&quot;&quot;</span> <span class="string">&quot;\n&quot;</span>);&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>粘贴操作符##，”##”可以将两个参数(token)合并为一个，给用户提供了一个动态生成token的能力；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GETTER(x, T) T get_ ## x() &#123;return x;&#125;</span></span><br><span class="line"><span class="comment">//源码中</span></span><br><span class="line">GETTER(foo,<span class="keyword">const</span> <span class="keyword">int</span>)</span><br><span class="line"><span class="comment">//预处理后</span></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">get_foo</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> foo;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>查看预处理器处理后的源码</em>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -E test.c -o macro<span class="comment">//test.c即源码,macro即经过预处理器后的源码</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li><p>宏的嵌套</p>
+<p>在宏的展开过程中，需要注意以下两点：</p>
+</li>
+</ol>
+<ul>
+<li><p>在展开过程中，如果替换列表中出现了被展开宏，那么该被展开宏将不再展开；</p>
+</li>
+<li><p>在每次展开过程中会创建一个”蓝色集合”，展开过的宏会放入蓝色集合中，以后的展开过程中，蓝色集合中的宏将不再继续展开；</p>
+<p><img src="/2021/01/02/Macro-in-C/obj_like_recur.png" alt="图1"></p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> foo foo a bar b bar baz c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> bar foo 12</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> baz bar 13</span></span><br><span class="line"><span class="comment">//源码中</span></span><br><span class="line">foo</span><br><span class="line"><span class="comment">//预处理后</span></span><br><span class="line">foo a foo <span class="number">12</span> b foo <span class="number">12</span> foo <span class="number">12</span> <span class="number">13</span> c</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://feng.zone/2017/05/18/%E5%AE%8F%E5%AE%9A%E4%B9%89%E9%BB%91%E9%AD%94%E6%B3%95-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7-2/">http://feng.zone/2017/05/18/%E5%AE%8F%E5%AE%9A%E4%B9%89%E9%BB%91%E9%AD%94%E6%B3%95-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7-2/</a></p>
+</blockquote>
+<ol start="3">
+<li><p>Linux常用宏</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//CONCAT宏：连接两个参数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _CONCAT(a,b) a##b</span></span><br><span class="line"><span class="comment">//TYPECHECK宏：检查x是否为type类型</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> typecheck(type,x) \</span></span><br><span class="line">(&#123; type __dummy; \</span><br><span class="line">    typeof(x) __dummy2; \</span><br><span class="line">    (<span class="keyword">void</span>)(&amp;__dummy == &amp;__dummy2); \</span><br><span class="line">    <span class="number">1</span>; \</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//SWAP宏：交换两个变量</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> swap(a, b) \</span></span><br><span class="line">    <span class="keyword">do</span> &#123; typeof(a) __tmp = (a); (a) = (b); (b) = __tmp; &#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br><span class="line"><span class="comment">//OFFSETOF宏：计算type结构体内member成员的偏移位置</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> offsetof(TYPE, MEMBER) ((size_t)&amp;((TYPE*)0)-&gt;MEMBER)</span></span><br><span class="line"><span class="comment">//CONTAINER_OF宏：计算type结构体首地址值</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> container_of(ptr, type, member) (&#123;               \</span></span><br><span class="line">        <span class="function"><span class="keyword">const</span> <span class="title">typeof</span><span class="params">(((type*)<span class="number">0</span>)-&gt;member)</span>* __mptr </span>= (ptr);   \</span><br><span class="line">        (type*)((<span class="keyword">char</span>*)__mptr - offsetof(type, member)); &#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/02/Macro-in-C/" data-id="ckjgqvenc0004rasc7fcv39md" data-title="Macro in C" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/02/Task-Switch/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Task Switch</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+  </section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Power/">Power</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RTOS/">RTOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/02/Macro-in-C/">Macro in C</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/02/Task-Switch/">Task Switch</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/">Eliminate Startup with Load Issue in Buck Converter</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/02/Memory-Segment/">Memory Segment</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/">FB Resistor Divider Design in DCDC Converter</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
