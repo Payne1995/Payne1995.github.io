@@ -71,6 +71,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="hexo-Oscilloscope-Basics" class="h-entry article article-type-hexo" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/15/Oscilloscope-Basics/" class="article-date">
+  <time class="dt-published" datetime="2021-01-15T03:00:34.000Z" itemprop="datePublished">2021-01-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Embedded-System/">Embedded System</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/15/Oscilloscope-Basics/">Oscilloscope Basics</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>作者：郑沛坤</strong></p>
+        
+          <p class="article-more-link">
+            <a href="/2021/01/15/Oscilloscope-Basics/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/15/Oscilloscope-Basics/" data-id="ckjxp5f7300083xsc9lyo15i4" data-title="Oscilloscope Basics" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-CAN-VS-RS485" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/01/15/CAN-VS-RS485/" class="article-date">
@@ -99,58 +146,15 @@
       
         <p><strong>作者：郑沛坤</strong></p>
 <p>&emsp;和点对点通信不同，现场总线中，所有信息在一条公共通道(称为总线)中传输，所有设备并联在总线上，根据过滤规则接收自己所需的信息。采用现场总线的方式，连线少，结构简单，目前主流的总线方式主要为RS485和CAN等几种。</p>
-<p>RS485由美国电子工业协会于1983年批准，RS485仅仅只规定了一个电气标准，在OSI七层模型中处于物理层。</p>
-<p>RS485采用的是差分信号传输方式：</p>
-<ul>
-<li>逻辑1，线路B(U+)信号电压高于线路A(U-)；</li>
-<li>逻辑0，线路B(U+)信号电压低于线路A(U-)；</li>
-</ul>
-<img src="/2021/01/15/CAN-VS-RS485/1920px-RS-485_waveform.png" alt="图1" style="zoom:33%;">
-
-<p>CAN由德国博世公司于1987年在国际汽车工程师学会会议上正式发表，和RS485不同，CAN标准同时涵盖了OSI七层模型中的物理层和数据链路层，因而可以实现较RS485更为复杂的功能。</p>
-<p>CAN同样采用差分信号传输方式来提高传输可靠性和传输距离：</p>
-<ul>
-<li>逻辑1：线路CAN_H信号(2.5V)电压等于线路CAN_L(2.5V)；</li>
-<li>逻辑0：线路CAN_H信号(5V)电压高于线路CAN_L(0V);</li>
-</ul>
-<img src="/2021/01/15/CAN-VS-RS485/990px-ISO11898-2.png" alt="图2" style="zoom: 75%;">
-
-<p>由于和RS485总线一样，CAN总线也采用差分信号的传输方式，因而RS485的传输信号抗干扰能力强，传输距离远的优点，CAN总线也同样具有。但是由于CAN总线中，规定了数据链路层协议，引入了CAN ID、位时序、帧类型和格式和侦测错误机制，大大拓展了CAN总线的功能。</p>
-<p>两种总线对比如下表所示：</p>
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>CAN总线</th>
-<th>RS485总线</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>传输速度和距离</td>
-<td>最远10km,最快可达1Mbps</td>
-<td>最远4km,最快可达10Mbps</td>
-</tr>
-<tr>
-<td>总线利用率</td>
-<td>根据ID自动仲裁优先级,总线利用率高</td>
-<td>总线中只能有一发送器在发送,采用主机轮询从机的凡是,总线利用率低</td>
-</tr>
-<tr>
-<td>错误侦测机制</td>
-<td>CAN控制器自带错误侦测,自动检测报文发送成功与否</td>
-<td>只有物理层协议,错误侦测需要由应用层完成</td>
-</tr>
-<tr>
-<td>成本</td>
-<td>需要专门的控制器和收发器,成本较高</td>
-<td>基于传统UART控制器和485收发器,成本较低</td>
-</tr>
-</tbody></table>
-
+        
+          <p class="article-more-link">
+            <a href="/2021/01/15/CAN-VS-RS485/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/15/CAN-VS-RS485/" data-id="ckjxozxh700010uscb83qfj69" data-title="CAN VS RS485" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/15/CAN-VS-RS485/" data-id="ckjxp5f6v00013xsc2xa725d9" data-title="CAN VS RS485" class="article-share-link">Share</a>
       
       
       
@@ -209,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/02/Macro-in-C/" data-id="ckjxozxhc00050usc5rlse7hu" data-title="Macro in C" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/02/Macro-in-C/" data-id="ckjxp5f7000053xsc60pw2sy3" data-title="Macro in C" class="article-share-link">Share</a>
       
       
       
@@ -257,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/02/Task-Switch/" data-id="ckjxozxhf00080usc5ydvbdwk" data-title="Task Switch" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/02/Task-Switch/" data-id="ckjxp5f75000b3xsc1oskhu57" data-title="Task Switch" class="article-share-link">Share</a>
       
       
       
@@ -309,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/" data-id="ckjxozxha00030uscco9302sr" data-title="Eliminate Startup with Load Issue in Buck Converter" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/" data-id="ckjxp5f6y00033xsc0o9mh8ks" data-title="Eliminate Startup with Load Issue in Buck Converter" class="article-share-link">Share</a>
       
       
       
@@ -357,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/02/Memory-Segment/" data-id="ckjxozxhe00070usc1ckh59uv" data-title="Memory Segment" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/02/Memory-Segment/" data-id="ckjxp5f7100073xsc6kbefopm" data-title="Memory Segment" class="article-share-link">Share</a>
       
       
       
@@ -405,7 +409,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/" data-id="ckjxozxhb00040usc26hzh2mg" data-title="FB Resistor Divider Design in DCDC Converter" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/20/FB-Resistor-Divider-Design-in-DCDC-Converter/" data-id="ckjxp5f6z00043xsc6yx135pr" data-title="FB Resistor Divider Design in DCDC Converter" class="article-share-link">Share</a>
       
       
       
@@ -454,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/" data-id="ckjxozxh200000uscb7ykgawa" data-title="Buck Converter Efficiency Analysis" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/16/Buck-Converter-Efficiency-Analysis/" data-id="ckjxp5f6q00003xscdvys6y5y" data-title="Buck Converter Efficiency Analysis" class="article-share-link">Share</a>
       
       
       
@@ -497,7 +501,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/16/hello-world/" data-id="ckjxozxhh000b0usc0k1477ph" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/16/hello-world/" data-id="ckjxp5f77000d3xsceg8q5plg" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -547,6 +551,10 @@
       <ul>
         
           <li>
+            <a href="/2021/01/15/Oscilloscope-Basics/">Oscilloscope Basics</a>
+          </li>
+        
+          <li>
             <a href="/2021/01/15/CAN-VS-RS485/">CAN VS RS485</a>
           </li>
         
@@ -560,10 +568,6 @@
         
           <li>
             <a href="/2021/01/02/Eliminate-Startup-with-Load-Issue-in-Buck-Converter/">Eliminate Startup with Load Issue in Buck Converter</a>
-          </li>
-        
-          <li>
-            <a href="/2021/01/02/Memory-Segment/">Memory Segment</a>
           </li>
         
       </ul>
