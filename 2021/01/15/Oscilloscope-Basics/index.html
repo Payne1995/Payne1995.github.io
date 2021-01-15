@@ -18,9 +18,8 @@
 <meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115141248237.png">
 <meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115141730329.png">
 <meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115141942804.png">
-<meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115142133414.png">
 <meta property="article:published_time" content="2021-01-15T03:00:34.000Z">
-<meta property="article:modified_time" content="2021-01-15T06:42:53.267Z">
+<meta property="article:modified_time" content="2021-01-15T06:47:38.525Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115134305762.png">
@@ -121,18 +120,13 @@
 </li>
 <li><p>带宽</p>
 <p>大多数示波器厂商会将示波器带宽指定为实时采样率的1/5到1/4之间，低于Nyquist频率。实际上<strong>带宽和采样率两个指标之间存在一定的耦合关系</strong>，采样率较高的示波器通常带宽也较高，因而<strong>因而示波器带宽至少是方波信号频率f的5倍以上。</strong></p>
-<p>以一阶低通滤波器为例，分别设置低通滤波器的带宽为方波信号频率的1/2、1、5、10倍时，经过滤波器后的信号波形如图3所示。可见当带宽是信号频率的1倍左右时，还原的信号失真度很高，当带宽是信号频率的5倍以上后，还原的信号和原信号形状上已相差无几。</p>
+<p>以一阶低通滤波器为例，分别设置低通滤波器的带宽为方波信号频率的1/2、1、5倍时，经过滤波器后的信号波形如图3所示。可见当带宽是信号频率的1倍左右时，还原的信号失真度很高，当带宽是信号频率的5倍以上后，还原的信号和原信号形状上已相差无几。</p>
 <img src="/2021/01/15/Oscilloscope-Basics/image-20210115141248237.png" alt="带宽为1/2f时" style="zoom:30%;">
 
 <img src="/2021/01/15/Oscilloscope-Basics/image-20210115141730329.png" alt="带宽为1f时" style="zoom: 30%;">
 
 <img src="/2021/01/15/Oscilloscope-Basics/image-20210115141942804.png" alt="带宽为5f时" style="zoom:30%;">
-
 </li>
-</ol>
-<img src="/2021/01/15/Oscilloscope-Basics/image-20210115142133414.png" alt="带宽为10f时" style="zoom:30%;">
-
-<ol start="4">
 <li><p>存储深度</p>
 <p>和大多数计算机相似，示波器的内存也是有限的。当示波器屏幕上显示一段时间内的波形时，其所有采样点的个数，称为存储深度。</p>
 <p>可以看出存储深度 = 采样率 X 采样时间。在示波器时间轴较长时，当示波器波形展开后，存储深度较小的示波器所显示波形的还原效果会较差。假设一台示波器显示的存储深度为10Mpts时，表示其一条波形由10M个采样点组成。因而当需要显示的波形的时间轴较长时，<strong>存储深度越大的示波器，保存的波形可以看到更多的细节</strong>。</p>
@@ -156,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/15/Oscilloscope-Basics/" data-id="ckjxp5f7300083xsc9lyo15i4" data-title="Oscilloscope Basics" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/15/Oscilloscope-Basics/" data-id="ckjxx7ddz0008c0sc69yp3c3q" data-title="Oscilloscope Basics" class="article-share-link">Share</a>
       
       
       
