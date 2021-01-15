@@ -6,17 +6,24 @@
   
   <title>Oscilloscope Basics | Peikun Post</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="作者：郑沛坤">
+  <meta name="description" content="作者：郑沛坤 &amp;emsp;示波器是工程师的眼睛，采样率、带宽和存储深度三大指标直接决定了示波器的性能。现实生活中的信号比如火车到达的时间，输出电压的幅值很多都是连续时间信号，但是计算机能处理的往往是离散时间信号，将连续时间信号转换为离散时间信号的过程称为采样。采样正是示波器显示信号波形关键的一环。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oscilloscope Basics">
 <meta property="og:url" content="http://example.com/2021/01/15/Oscilloscope-Basics/index.html">
 <meta property="og:site_name" content="Peikun Post">
-<meta property="og:description" content="作者：郑沛坤">
+<meta property="og:description" content="作者：郑沛坤 &amp;emsp;示波器是工程师的眼睛，采样率、带宽和存储深度三大指标直接决定了示波器的性能。现实生活中的信号比如火车到达的时间，输出电压的幅值很多都是连续时间信号，但是计算机能处理的往往是离散时间信号，将连续时间信号转换为离散时间信号的过程称为采样。采样正是示波器显示信号波形关键的一环。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115134305762.png">
+<meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/FourierSeriesSquareWave_800.png">
+<meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115141248237.png">
+<meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115141730329.png">
+<meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115141942804.png">
+<meta property="og:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115142133414.png">
 <meta property="article:published_time" content="2021-01-15T03:00:34.000Z">
-<meta property="article:modified_time" content="2021-01-15T03:02:46.741Z">
+<meta property="article:modified_time" content="2021-01-15T06:42:53.267Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/15/Oscilloscope-Basics/image-20210115134305762.png">
   
     <link rel="alternate" href="/atom.xml" title="Peikun Post" type="application/atom+xml">
   
@@ -100,7 +107,52 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p><strong>作者：郑沛坤</strong></p>
+<p>&emsp;示波器是工程师的眼睛，采样率、带宽和存储深度三大指标直接决定了示波器的性能。现实生活中的信号比如火车到达的时间，输出电压的幅值很多都是连续时间信号，但是计算机能处理的往往是离散时间信号，将连续时间信号转换为离散时间信号的过程称为采样。采样正是示波器显示信号波形关键的一环。</p>
 <a id="more"></a>
+
+<ol>
+<li><p>Nyquist采样</p>
+<p>根据Nyquist采样定律，只要采样率高于信号频率的两倍以上，可以根据傅立叶逆变换和低通滤波器完整的还原信号。以正弦信号为例，我们只要知道了波峰和波谷或任意两个相距1/2周期的点，就可以根据正弦信号规律，就可以还原出完整的正弦信号，如图1所示。</p>
+<img src="/2021/01/15/Oscilloscope-Basics/image-20210115134305762.png" alt="图1" style="zoom:40%;">
+</li>
+<li><p>采样率</p>
+<p>示波器对信号的采样正是基于Nyquist采样定律，同时在实际应用中为保证信号的真实还原效果，2倍于信号频率的采样率通常是不够的，实际需求的采样率要更高一些。实际工程中，需要监测的无论是通信中的数字信号还是电源的开关信号，都以方波信号为主，而频率为f方波信号是由同频率f的基波信号和更高频率的谐波信号叠加而成的，如图2所示。为较好的还原方波信号，至少需要还原5次谐波信号，需要还原的信号频率为5f，5倍于方波信号频率。<strong>因而示波器采样率至少是方波信号频率f的10倍以上。</strong></p>
+<p><img src="/2021/01/15/Oscilloscope-Basics/FourierSeriesSquareWave_800.png" alt="图2"></p>
+</li>
+<li><p>带宽</p>
+<p>大多数示波器厂商会将示波器带宽指定为实时采样率的1/5到1/4之间，低于Nyquist频率。实际上<strong>带宽和采样率两个指标之间存在一定的耦合关系</strong>，采样率较高的示波器通常带宽也较高，因而<strong>因而示波器带宽至少是方波信号频率f的5倍以上。</strong></p>
+<p>以一阶低通滤波器为例，分别设置低通滤波器的带宽为方波信号频率的1/2、1、5、10倍时，经过滤波器后的信号波形如图3所示。可见当带宽是信号频率的1倍左右时，还原的信号失真度很高，当带宽是信号频率的5倍以上后，还原的信号和原信号形状上已相差无几。</p>
+<img src="/2021/01/15/Oscilloscope-Basics/image-20210115141248237.png" alt="带宽为1/2f时" style="zoom:30%;">
+
+<img src="/2021/01/15/Oscilloscope-Basics/image-20210115141730329.png" alt="带宽为1f时" style="zoom: 30%;">
+
+<img src="/2021/01/15/Oscilloscope-Basics/image-20210115141942804.png" alt="带宽为5f时" style="zoom:30%;">
+
+</li>
+</ol>
+<img src="/2021/01/15/Oscilloscope-Basics/image-20210115142133414.png" alt="带宽为10f时" style="zoom:30%;">
+
+<ol start="4">
+<li><p>存储深度</p>
+<p>和大多数计算机相似，示波器的内存也是有限的。当示波器屏幕上显示一段时间内的波形时，其所有采样点的个数，称为存储深度。</p>
+<p>可以看出存储深度 = 采样率 X 采样时间。在示波器时间轴较长时，当示波器波形展开后，存储深度较小的示波器所显示波形的还原效果会较差。假设一台示波器显示的存储深度为10Mpts时，表示其一条波形由10M个采样点组成。因而当需要显示的波形的时间轴较长时，<strong>存储深度越大的示波器，保存的波形可以看到更多的细节</strong>。</p>
+</li>
+<li><p>选购指南</p>
+<p>入门级示波器：</p>
+<ul>
+<li>带宽：100MHz；</li>
+<li>存储深度：28Mpts；</li>
+<li>采样率：最高1GSa/s；</li>
+</ul>
+<p>中端级示波器：</p>
+<ul>
+<li>带宽：300MHz；</li>
+<li>存储深度：100Mpt；</li>
+<li>采样率：最高2.5GSa/s；</li>
+</ul>
+</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
