@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>HOT-PLUG &amp; VIN EOS | Peikun Post</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="作者：郑沛坤 很多功率IC的失效根源来自于EOS(Electrical Over Stress)，尤其是IC的电源输入引脚。电源输入引线的热插拔过程中造成的瞬态，引线电感和输入电容参与的LC震荡和不合理的元件布局是电源IC的VIN引脚EOS失效的元凶。为避免由此造成电源IC的EOS失效，可以通过添加额外的电解电容、添加额外的TVS管、增强电源引线耦合和优化元件布局的方式来改善。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HOT-PLUG &amp; VIN EOS">
+<meta property="og:url" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/index.html">
+<meta property="og:site_name" content="Peikun Post">
+<meta property="og:description" content="作者：郑沛坤 很多功率IC的失效根源来自于EOS(Electrical Over Stress)，尤其是IC的电源输入引脚。电源输入引线的热插拔过程中造成的瞬态，引线电感和输入电容参与的LC震荡和不合理的元件布局是电源IC的VIN引脚EOS失效的元凶。为避免由此造成电源IC的EOS失效，可以通过添加额外的电解电容、添加额外的TVS管、增强电源引线耦合和优化元件布局的方式来改善。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117143640942.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117144156509.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117145129365.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117145642653.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117152518502.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117152558216.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117154206572.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117154222501.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117161018722.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117161039099.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117155121878.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117155150079.png">
+<meta property="og:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117155214698.png">
+<meta property="article:published_time" content="2021-01-17T08:25:22.000Z">
+<meta property="article:modified_time" content="2021-01-17T08:32:42.376Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117143640942.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Peikun Post" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Peikun Post</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-HOT-PLUG-VIN-EOS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/17/HOT-PLUG-VIN-EOS/" class="article-date">
+  <time class="dt-published" datetime="2021-01-17T08:25:22.000Z" itemprop="datePublished">2021-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Power/">Power</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      HOT-PLUG &amp; VIN EOS
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>作者：郑沛坤</strong></p>
+<p>很多功率IC的失效根源来自于EOS(Electrical Over Stress)，尤其是IC的电源输入引脚。电源输入引线的热插拔过程中造成的瞬态，引线电感和输入电容参与的LC震荡和不合理的元件布局是电源IC的VIN引脚EOS失效的元凶。为避免由此造成电源IC的EOS失效，可以通过添加额外的电解电容、添加额外的TVS管、增强电源引线耦合和优化元件布局的方式来改善。</p>
+<a id="more"></a>
+
+<ol>
+<li><p>工作电压范围</p>
+<p>大多数Power IC都有一个工作电压范围，由低到高可以划分为Operating region(工作电压、Absolute maximum rating(最大承受电压)、ESD rating等不同区间，以MP9928为例，最大工作电压是60V，最大可承受电压为65V，如图2所示。</p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117143640942.png" alt="图1"></p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117144156509.png" alt="图2"></p>
+</li>
+<li><p>热插拔</p>
+<p>热插拔在实际工作中十分常见的操作情况，尤其当供电电源具有较长导线时，将会对受电端的Power IC造成显著的影响。另一方面由于对成本和体积的追求，Power IC的输入电容通常会采用体积更小、寄生电阻更小的陶瓷电容(MLCC)。热插拔过程中的等效电路如图3所示。</p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117145129365.png" alt="图3"></p>
+<p>假设引线等效电感为1.5uH，两个10uF的陶瓷输入电容在12V电压偏置下衰减为5uF，Power IC的等效输入电阻为10k。上电瞬间Power IC的输入电压波形如图4所示。LC震荡频率由导线等效电感和输入电容决定，由于导线等效电阻太小，LC震荡通常处于欠阻尼的状态，超调量较大，输入电压的峰值可达输入电压的192%以上，造成Power IC的输入PIN脚的过压损坏。</p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117145642653.png" alt="图4"></p>
+</li>
+<li><p>不良布局</p>
+<p>进一步的，如果元器件尤其输入电容的位置放置的不对，在输入电容之间引入额外的寄生电感，为凸显效果，假设额外引入的寄生电感为1uH，如图5所示。热插拔过程中造成的输入电压的震荡情况将更加恶劣，如图6中蓝色波形所示，<strong>Power IC的输入处甚至可能出现负压，直接造成IC的EOS损坏。</strong></p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117152518502.png" alt="图5"></p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117152558216.png" alt="图6"></p>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li><p>输入电容中添加额外的电解电容：</p>
+<p>相比陶瓷电容，电解电容具有较大的寄生电阻，相当于给热插拔过程中的LC震荡增加了一个RC snubber，如图7所示。削弱LC震荡的超调量和震荡频率，如图8所示，添加额外的电解电容后，输入电压的峰值降低到158%左右，震荡时间大大减小。</p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117154206572.png" alt="图7"></p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117154222501.png" alt="图8"></p>
+</li>
+<li><p>添加额外的TVS管</p>
+<p>选择的TVS管需要满足以下两个条件：</p>
+<ul>
+<li>BreakDown电压高于正常工作电压，低于Power IC的保护电压；</li>
+<li>TVS所能吸收的浪涌功率高于实际应用。</li>
+</ul>
+<p>如图9和10所示，选取BreakDown电压为13V的TVS管后，可以削弱LC震荡的超调量到127%左右。</p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117161018722.png" alt="图9"></p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117161039099.png" alt="图10"></p>
+</li>
+<li><p>增强电源输入线之间的耦合</p>
+<p>电源输入的火线和地线之间的良好耦合，可以分别在火线和地线上产生极性相反的寄生电感，如图11所示。不同导线之间的耦合程度不同，如图12所示，选择耦合程度较好的导线，可以削弱LC震荡的超调量到145%左右，如图13所示。</p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117155121878.png" alt="图11"></p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117155150079.png" alt="图12"></p>
+<p><img src="/2021/01/17/HOT-PLUG-VIN-EOS/image-20210117155214698.png" alt="图13"></p>
+</li>
+</ul>
+</li>
+<li><p>总结</p>
+<p>在Power IC对输入电压范围要求较为严苛时，可同时采用以上几种措施来应对热插拔瞬态造成的Power IC的输入电压的震荡，保护Power IC免受EOS损坏。同时可根据成本和空间的不同要求而采取不同的保护措施。</p>
+</li>
+</ol>
+<p>参考文献：</p>
+<ul>
+<li>Analyzing VIN overstress in Power ICs, RICHTEK Application Note.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/17/HOT-PLUG-VIN-EOS/" data-id="ckk0vusgg0005q5sc0dhtgi5z" data-title="HOT-PLUG &amp; VIN EOS" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/15/Oscilloscope-Basics/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Oscilloscope Basics</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+  </section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Embedded-System/">Embedded System</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Power/">Power</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RTOS/">RTOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/17/HOT-PLUG-VIN-EOS/">HOT-PLUG &amp; VIN EOS</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/15/Oscilloscope-Basics/">Oscilloscope Basics</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/15/CAN-VS-RS485/">CAN VS RS485</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/02/Macro-in-C/">Macro in C</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/02/Task-Switch/">Task Switch</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
